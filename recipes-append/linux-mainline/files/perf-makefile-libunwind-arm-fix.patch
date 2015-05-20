@@ -1,12 +1,11 @@
 --- a/tools/perf/Makefile	2015-02-23 07:14:06.273529988 +0100
 +++ b/tools/perf/Makefile	2015-02-23 07:13:21.993529456 +0100
-@@ -84,6 +84,10 @@ ifeq ($(ARCH),x86_64)
+@@ -84,6 +84,9 @@ ifeq ($(ARCH),x86_64)
  	NO_PERF_REGS := 0
  	LIBUNWIND_LIBS = -lunwind -lunwind-x86_64
  endif
 +ifeq ($(ARCH),arm)
 +	NO_PERF_REGS := 1
-+	LIBUNWIND_LIBS = -lunwind -lunwind-arm
 +endif
  
  # Treat warnings as errors unless directed not to
