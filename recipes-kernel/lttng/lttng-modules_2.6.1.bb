@@ -10,14 +10,15 @@ DEPENDS = "virtual/kernel"
 
 inherit module
 
-SRCREV = "9e8bcbf975844986f021e99e2a30ceedc41b46a8"
-PV = "2.6.0"
+SRCREV = "62080b2248fd8ec4111ffc379d0bc5eaf0a5c16d"
+PV = "2.6.1"
 
 SRC_URI = "git://git.lttng.org/lttng-modules.git \
-           file://lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch"
+    file://lttng-modules-replace-KERNELDIR-with-KERNEL_SRC.patch"
 
 export INSTALL_MOD_DIR="kernel/lttng-modules"
 export KERNEL_SRC="${STAGING_KERNEL_DIR}"
+export LTTNG_KERNEL_SRC="${KERNEL_SRC}"
 
 
 S = "${WORKDIR}/git"

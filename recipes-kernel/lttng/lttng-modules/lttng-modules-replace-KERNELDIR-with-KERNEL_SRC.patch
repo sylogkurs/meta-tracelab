@@ -9,10 +9,10 @@ it as-is.
 Signed-off-by: Zumeng Chen <zumeng.chen@windriver.com>
 
 diff --git a/Makefile b/Makefile
-index a9d1cb1..c1b65b9 100644
+index 5277386..590c8d2 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -43,19 +43,19 @@ obj-m += lib/
+@@ -68,19 +68,19 @@ obj-m += lib/
  endif # CONFIG_TRACEPOINTS
  
  else # KERNELRELEASE
@@ -22,31 +22,31 @@ index a9d1cb1..c1b65b9 100644
  	CFLAGS = $(EXTCFLAGS)
  
  default:
--	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
-+	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules
+-	LTTNG_KERNELDIR=$(KERNELDIR) $(MAKE) -C $(KERNELDIR) M=$(PWD) modules
++	LTTNG_KERNELDIR=$(KERNEL_SRC) $(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules
  
  modules_install:
--	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install
-+	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules_install
+-	LTTNG_KERNELDIR=$(KERNELDIR) $(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install
++	LTTNG_KERNELDIR=$(KERNEL_SRC) $(MAKE) -C $(KERNEL_SRC) M=$(PWD) modules_install
  
  clean:
--	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
-+	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) clean
+-	LTTNG_KERNELDIR=$(KERNELDIR) $(MAKE) -C $(KERNELDIR) M=$(PWD) clean
++	LTTNG_KERNELDIR=$(KERNEL_SRC) $(MAKE) -C $(KERNEL_SRC) M=$(PWD) clean
  
  %.i: %.c
--	$(MAKE) -C $(KERNELDIR) M=$(PWD) $@
-+	$(MAKE) -C $(KERNEL_SRC) M=$(PWD) $@
+-	LTTNG_KERNELDIR=$(KERNELDIR) $(MAKE) -C $(KERNELDIR) M=$(PWD) $@
++	LTTNG_KERNELDIR=$(KERNEL_SRC) $(MAKE) -C $(KERNEL_SRC) M=$(PWD) $@
  endif # KERNELRELEASE
 diff --git a/probes/Makefile b/probes/Makefile
-index 225803c..3449866 100644
+index 3272b9f..d30ca32 100644
 --- a/probes/Makefile
 +++ b/probes/Makefile
-@@ -212,18 +212,18 @@ endif
+@@ -267,18 +267,18 @@ endif
  endif
  
  else
 -	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
-+	KERNEL_SRC ?= /lib/modules/$(shell uname -r)/build
++	KERNEL_SOURCE ?= /lib/modules/$(shell uname -r)/build
  	PWD := $(shell pwd)
  	CFLAGS = $(EXTCFLAGS)
  
