@@ -1,0 +1,11 @@
+--- a/tools/lib/traceevent/Makefile.old	2015-03-01 09:47:19.550794603 +0100
++++ b/tools/lib/traceevent/Makefile	2015-03-01 09:47:24.638794986 +0100
+@@ -109,7 +109,7 @@
+ 
+ srctree		:= $(if $(BUILD_SRC),$(BUILD_SRC),$(CURDIR))
+ objtree		:= $(CURDIR)
+-src		:= $(srctree)
++src		:= $(abspath $(srctree))
+ obj		:= $(objtree)
+ 
+ export prefix bindir src obj

@@ -1,0 +1,11 @@
+--- a/tools/perf/Makefile.perf.orig	2015-03-01 00:17:12.683022289 +0100
++++ b/tools/perf/Makefile.perf	2015-03-01 00:17:18.419022237 +0100
+@@ -805,7 +805,7 @@
+ # libtraceevent.a
+ TE_SOURCES = $(wildcard $(TRACE_EVENT_DIR)*.[ch])
+ 
+-LIBTRACEEVENT_FLAGS  = $(QUIET_SUBDIR1) O=$(OUTPUT)
++LIBTRACEEVENT_FLAGS  = $(QUIET_SUBDIR1) O=$(abspath $(OUTPUT))
+ LIBTRACEEVENT_FLAGS += CFLAGS="-g -Wall $(EXTRA_CFLAGS)"
+ LIBTRACEEVENT_FLAGS += plugin_dir=$(plugindir_SQ)
+ 
